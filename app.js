@@ -4,6 +4,7 @@ import cors from "cors";
 import { mdbConnect } from "./db/db.js";
 
 import usersRouter from "./routes/users.js";
+import eventsRouter from "./routes/events.js";
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -16,6 +17,7 @@ mdbConnect();
 app.use(express.json());
 
 app.use("/users", usersRouter);
+app.use("/events", eventsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);

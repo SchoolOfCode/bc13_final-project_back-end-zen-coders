@@ -11,7 +11,7 @@ const eventSchema = new Schema(
     description: { type: String, required: true, maxLength: 6500 },
     startTime: { type: Date, default: Date.now, required: true },
     sharerId: { type: Object, required: true },
-  },
+    eventPic: { type: String,required: false }},
   {
     timestamps: true,
   }

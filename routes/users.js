@@ -7,8 +7,9 @@ router.get("/", async (req, res) => {
   try {
     // mongoose method to get the list of all users from mdb,
     //find method returns a promise
-    const result = await User.find(); //Select * FRom
+    const result = await User.find(); //Same as SELECT * FROM
     res.json(result);
+    //error handeling without restarting server
   } catch (error) {
     console.log(error);
     res.status(400).json("Error: " + error);
@@ -23,6 +24,7 @@ router.post("/add", async (req, res) => {
   const isLearner = req.body.isLearner;
   const isSharer = req.body.isSharer;
 
+  // "new" creates a new instance of an  object
   const newUser = new User({
     name,
     location,
@@ -43,6 +45,7 @@ router.post("/add", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
+    //findbyid is a mongodb method
     const result = await User.findById(req.params.id);
     res.json(result);
   } catch (error) {
@@ -61,7 +64,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.put("/update/:id", async (req, res) => {
+router.patch("/update/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     user.name = req.body.name;
