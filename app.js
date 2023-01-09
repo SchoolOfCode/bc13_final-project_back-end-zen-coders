@@ -1,13 +1,22 @@
-import express from "express"
-import morgan from "morgan"
-import cors from "cors"
+import express from "express";
+import morgan from "morgan";
+import cors from "cors";
+import { mdbConnect } from "./db/db.js";
 
-const app = express()
-const PORT = process.env.PORT || 3002
+import usersRouter from "./routes/users.js";
 
-app.use(cors("*"))
-app.use(morgan("dev"))
+const app = express();
+const PORT = process.env.PORT || 3002;
 
-app.use(express.json())
+app.use(cors());
+app.use(morgan("dev"));
 
-app.listen( PORT, ()=>{console.log(`Server is running on ${PORT}`)})
+mdbConnect();
+
+app.use(express.json());
+
+app.use("/users", usersRouter);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT}`);
+});
