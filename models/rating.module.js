@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const ratingSchema = new Schema(
   {
     rating: {
-        type:number,
+        type: Number,
         min: 0,
         max: 5,
         required: false
