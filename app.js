@@ -5,10 +5,9 @@ import { mdbConnect } from "./db/db.js";
 
 import usersRouter from "./routes/users.js";
 
-import ratingsRouter from "./routes/rating.js"
+import ratingsRouter from "./routes/rating.js";
 
 import eventsRouter from "./routes/events.js";
-
 
 const app = express();
 const PORT = process.env.PORT || 3002;

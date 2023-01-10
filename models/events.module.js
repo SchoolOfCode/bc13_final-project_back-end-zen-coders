@@ -10,8 +10,13 @@ const eventSchema = new Schema(
     area: { type: String, required: true },
     description: { type: String, required: true, maxLength: 6500 },
     startTime: { type: Date, default: Date.now, required: true },
-    sharerId: { type: Object, required: true },
-    eventPic: { type: String,required: false }},
+    sharerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
+    eventPic: { type: String, required: false },
+  },
   {
     timestamps: true,
   }

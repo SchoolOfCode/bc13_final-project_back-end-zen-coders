@@ -23,6 +23,7 @@ router.post("/add", async (req, res) => {
   const email = req.body.email;
   const isLearner = req.body.isLearner;
   const isSharer = req.body.isSharer;
+  const aboutMe = req.body.aboutMe;
 
   // "new" creates a new instance of an  object
   const newUser = new User({
@@ -32,6 +33,7 @@ router.post("/add", async (req, res) => {
     email,
     isLearner,
     isSharer,
+    aboutMe,
   });
 
   try {
@@ -73,6 +75,7 @@ router.patch("/update/:id", async (req, res) => {
     user.email = req.body.email;
     user.isLearner = req.body.isLearner;
     user.isSharer = req.body.isSharer;
+    user.aboutMe = req.body.aboutMe;
     const result = await user.save();
     res.json("User updated!");
   } catch (error) {
