@@ -39,7 +39,7 @@ router.post("/add", async (req, res) => {
   });
 
   try {
-    const result = await newEvent.save(); //save method allows the new use to be saved in mdb
+    const result = await newEvent.save(); //save method allows the new data to be saved in mdb
     res.json("Event added!");
   } catch (error) {
     console.log(error);
@@ -79,7 +79,7 @@ router.patch("/update/:id", async (req, res) => {
     event.startTime = req.body.startTime;
     event.sharerId = req.body.sharerId;
     event.eventPic = req.body.eventPic;
-    event.result = await user.save();
+    event.result = await event.save();
     res.json("Event updated!");
   } catch (error) {
     console.log("Error: " + error);

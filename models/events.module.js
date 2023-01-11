@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const eventSchema = new Schema(
   {
-    title: { type: String, required: true, unique: true },
+    title: { type: String, required: true },
     skill: { type: String, required: true },
     location: { type: String, required: true },
     area: { type: String, required: true },
@@ -21,7 +21,7 @@ const eventSchema = new Schema(
     timestamps: true,
   }
 );
-
+//exporting the schema into routes
 const Event = mongoose.model("Events", eventSchema);
 
 export default Event;
