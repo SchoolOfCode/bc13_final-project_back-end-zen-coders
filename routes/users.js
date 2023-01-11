@@ -24,7 +24,8 @@ router.post("/add", async (req, res) => {
   const isLearner = req.body.isLearner;
   const isSharer = req.body.isSharer;
   const aboutMe = req.body.aboutMe;
-  const ratingId = req.body.ratingId;
+  const ratingId = req.body.ratingId;//post an empty array
+
 
   // "new" creates a new instance of an  object
   const newUser = new User({
@@ -86,5 +87,21 @@ router.patch("/update/:id", async (req, res) => {
     res.status(400).json("Error: " + error);
   }
 });
+
+router.patch("/update/rating/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    user.ratings.push(req.body.ratingId);
+    const result = await user.save();
+    res.json("User updated!");
+  } catch (error) {
+    console.log("Error: " + error);
+    res.status(400).json("Error: " + error);
+  }
+});
+
+
+// db.student.update( { "subjects" : "gkn" },{ $push: { "achieve": 95 } });
+
 
 export default router;

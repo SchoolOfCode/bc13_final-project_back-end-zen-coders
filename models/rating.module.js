@@ -8,13 +8,18 @@ const ratingSchema = new Schema(
       type: Number,
       min: 0,
       max: 5,
-      required: false,
+      required: true,
     },
-    userId: {
+    raterId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "User",
     },
+    rateeId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+      },
   },
   {
     timestamps: true,

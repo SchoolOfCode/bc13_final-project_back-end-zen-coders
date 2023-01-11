@@ -15,11 +15,13 @@ router.get("/", async (req, res) => {
 
 router.post("/add", async (req, res) => {
   const rating = req.body.rating;
-  const userId = req.body.userId;
+  const raterId = req.body.raterId;
+  const rateeId = req.body.rateeId;
 
   const newRating = new Rating({
     rating,
-    userId,
+    raterId,
+    rateeId
   });
 
   try {
