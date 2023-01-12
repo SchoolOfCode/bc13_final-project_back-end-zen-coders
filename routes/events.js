@@ -79,7 +79,7 @@ router.patch("/update/:id", async (req, res) => {
     event.startTime = req.body.startTime;
     event.sharerId = req.body.sharerId;
     event.eventPic = req.body.eventPic;
-    event.result = await user.save();
+    event.result = await event.save();
     res.json("Event updated!");
   } catch (error) {
     console.log("Error: " + error);
