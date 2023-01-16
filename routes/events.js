@@ -1,9 +1,9 @@
-import express from "express";
+import express from 'express';
 const router = express.Router();
 
-import Event from "../models/events.module.js";
+import Event from '../models/events.module.js';
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     // mongoose method to get the list of all users from mdb,
     //find method returns a promise
@@ -12,11 +12,34 @@ router.get("/", async (req, res) => {
     //error handeling without restarting server
   } catch (error) {
     console.log(error);
-    res.status(400).json("Error: " + error);
+    res.status(400).json('Error: ' + error);
   }
 });
 
-router.post("/add", async (req, res) => {
+// router.get('/explore', async (req, res) => {
+//   try {
+//     db.user.aggregate([
+//       {
+//         $lookup: {
+//           from: 'user',
+//           localField: 'sharerId',
+//           foreignField: '_id',
+//           as: 'sharerName',
+//         },
+//       },
+//     ]);
+//     // mongoose method to get the list of all users from mdb,
+//     //find method returns a promise
+//     const result = await Event.find(); //Same as SELECT * FROM
+//     res.json(result);
+//     //error handeling without restarting server
+//   } catch (error) {
+//     console.log(error);
+//     res.status(400).json('Error: ' + error);
+//   }
+// });
+
+router.post('/add', async (req, res) => {
   const title = req.body.title;
   const skill = req.body.skill;
   const location = req.body.location;
@@ -40,35 +63,35 @@ router.post("/add", async (req, res) => {
 
   try {
     const result = await newEvent.save(); //save method allows the new use to be saved in mdb
-    res.json("Event added!");
+    res.json('Event added!');
   } catch (error) {
     console.log(error);
-    res.status(400).json("Error: " + error);
+    res.status(400).json('Error: ' + error);
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     //findbyid is a mongodb method
     const result = await Event.findById(req.params.id);
     res.json(result);
   } catch (error) {
-    console.log("Error: " + error);
-    res.status(400).json("Error: " + error);
+    console.log('Error: ' + error);
+    res.status(400).json('Error: ' + error);
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const result = await Event.findByIdAndDelete(req.params.id);
-    res.json("Event deleted");
+    res.json('Event deleted');
   } catch (error) {
-    console.log("Error: " + error);
-    res.status(400).json("Error: " + error);
+    console.log('Error: ' + error);
+    res.status(400).json('Error: ' + error);
   }
 });
 
-router.patch("/update/:id", async (req, res) => {
+router.patch('/update/:id', async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
     event.title = req.body.title;
@@ -80,10 +103,10 @@ router.patch("/update/:id", async (req, res) => {
     event.sharerId = req.body.sharerId;
     event.eventPic = req.body.eventPic;
     event.result = await event.save();
-    res.json("Event updated!");
+    res.json('Event updated!');
   } catch (error) {
-    console.log("Error: " + error);
-    res.status(400).json("Error: " + error);
+    console.log('Error: ' + error);
+    res.status(400).json('Error: ' + error);
   }
 });
 export default router;
