@@ -2,6 +2,7 @@ import express from 'express';
 const router = express.Router();
 
 import Event from '../models/events.module.js';
+import User from "../models/users.module.js"
 
 router.get('/', async (req, res) => {
   try {
@@ -16,28 +17,29 @@ router.get('/', async (req, res) => {
   }
 });
 
-// router.get('/explore', async (req, res) => {
-//   try {
-//     db.user.aggregate([
-//       {
-//         $lookup: {
-//           from: 'user',
-//           localField: 'sharerId',
-//           foreignField: '_id',
-//           as: 'sharerName',
-//         },
-//       },
-//     ]);
-//     // mongoose method to get the list of all users from mdb,
-//     //find method returns a promise
-//     const result = await Event.find(); //Same as SELECT * FROM
-//     res.json(result);
-//     //error handeling without restarting server
-//   } catch (error) {
-//     console.log(error);
-//     res.status(400).json('Error: ' + error);
-//   }
-// });
+router.get('/explore', async (req, res) => {
+  try {
+    const explore = await User.aggregate([
+      {
+        $lookup: {
+          from: 'User',
+          localField: 'sharerId',
+          foreignField: '_id',
+          as: 'sharerName',
+        },
+      },
+    ]);
+    res.json(explore)
+    // mongoose method to get the list of all users from mdb,
+    //find method returns a promise
+    // const result = await Event.find(); //Same as SELECT * FROM
+    // res.json(result);
+    //error handeling without restarting server
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('Error: ' + error);
+  }
+});
 
 router.post('/add', async (req, res) => {
   const title = req.body.title;
