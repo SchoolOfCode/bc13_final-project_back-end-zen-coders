@@ -2,7 +2,6 @@ import express from 'express';
 const router = express.Router();
 
 import Event from '../models/events.module.js';
-import User from "../models/users.module.js"
 
 router.get('/', async (req, res) => {
   try {
@@ -19,10 +18,10 @@ router.get('/', async (req, res) => {
 
 router.get('/explore', async (req, res) => {
   try {
-    const explore = await User.aggregate([
+    const explore = await Event.aggregate([
       {
         $lookup: {
-          from: 'User',
+          from: 'users',
           localField: 'sharerId',
           foreignField: '_id',
           as: 'sharerName',
