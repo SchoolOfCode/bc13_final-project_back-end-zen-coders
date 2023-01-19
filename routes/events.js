@@ -34,6 +34,39 @@ router.get('/explore', async (req, res) => {
     res.status(400).json('Error: ' + error);
   }
 });
+√
+router.get('/explore/skill', async (req, res) => {
+  try {
+    const pipeline = [
+      { $match: { skill: req.query.skill } },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'sharerId',
+          foreignField: '_id',
+          as: 'sharerName'
+        }
+      },
+      { $sort: { createdAt: -1 } },
+    ];
+    const result = await Event.aggregate(pipeline)
+    res.json(result)
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('Error: ' + error);
+  }
+});
+
+// router.get('/', async (req, res) => {
+//   try {
+//     //findOne is a mongodb method
+//     const result = await Event.findOne({ skill: req.query.skill });
+//     res.json(result);
+//   } catch (error) {
+//     console.log('Error: ' + error);
+//     res.status(400).json('Error: ' + error);
+//   }
+// });
 
 router.post('/add', async (req, res) => {
   const title = req.body.title;
