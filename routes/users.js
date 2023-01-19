@@ -16,6 +16,25 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/profile', async (req, res) => {
+  try {
+    const explore = await User.aggregate([
+      {
+        $lookup: {
+          from: 'events',
+          localField: '_id',
+          foreignField: 'sharerId',
+          as: 'UsersEvents',
+        },
+      },
+    ]);
+    res.json(explore)
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('Error: ' + error);
+  }
+});
+
 router.post('/add', async (req, res) => {
   const name = req.body.name;
   const location = req.body.location;
