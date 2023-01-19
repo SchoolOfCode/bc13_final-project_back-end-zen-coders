@@ -34,7 +34,7 @@ router.get('/explore', async (req, res) => {
     res.status(400).json('Error: ' + error);
   }
 });
-√
+
 router.get('/explore/skill', async (req, res) => {
   try {
     const pipeline = [
