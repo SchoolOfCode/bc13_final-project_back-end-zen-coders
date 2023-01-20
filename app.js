@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
+
 import { mdbConnect } from "./db/db.js";
 
 import usersRouter from "./routes/users.js";
@@ -14,6 +15,13 @@ const PORT = process.env.PORT || 3002;
 
 app.use(cors());
 app.use(morgan("dev"));
+
+// const upload = multer({
+//   storage: multer.memoryStorage(),
+//   limits: {
+//     fileSize: 5 * 1024 * 1024,
+//   },
+// });
 
 mdbConnect();
 
