@@ -1,5 +1,8 @@
 import express from 'express';
 const router = express.Router();
+import { ObjectId } from 'mongoose'; 
+import mongoose from "mongoose";
+
 
 import User from '../models/users.module.js';
 
@@ -29,6 +32,29 @@ router.get('/profile', async (req, res) => {
       },
     ]);
     res.json(explore)
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('Error: ' + error);
+  }
+});
+
+router.get('/profile/:id', async (req, res) => {
+  try {
+    
+    const pipeline = [
+     { $match: { _id: mongoose.Types.ObjectId(req.params.id)} },
+      {
+        $lookup: {
+          from: 'events',
+          localField: '_id',
+          foreignField: 'sharerId',
+          as: 'UsersEvents'
+        }
+      },
+    //  { $sort: { createdAt: -1 } },
+    ];
+    const result = await User.aggregate(pipeline)
+    res.json(result)
   } catch (error) {
     console.log(error);
     res.status(400).json('Error: ' + error);
