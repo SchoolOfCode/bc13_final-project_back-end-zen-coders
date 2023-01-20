@@ -8,8 +8,11 @@ export default multer({
     let ext = extname(file.originalname);
     if (
       ext !== ".jpg" &&
+      ext !== ".JPG" &&
       ext !== ".jpeg" &&
+      ext !== ".JPEG" &&
       ext !== ".png" &&
+      ext !== ".PNG" &&
       ext !== ".heic"
     ) {
       cb(new Error("File type is not supported"), false);

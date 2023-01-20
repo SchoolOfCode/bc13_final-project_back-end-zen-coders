@@ -3,6 +3,9 @@ const router = express.Router();
 import cloudinary from "../utils/cloudinary.js";
 import multer from "../utils/multer.js";
 
+import convert from "heic-convert";
+import sharp from "sharp";
+
 import User from "../models/users.module.js";
 
 router.get("/", async (req, res) => {
@@ -40,18 +43,19 @@ router.get("/profile", async (req, res) => {
 router.post("/add", multer.single("profilePic"), async (req, res) => {
   const name = req.body.name;
   const location = req.body.location;
-  const profilePic = req.file.path;
   const email = req.body.email;
   const isLearner = req.body.isLearner;
   const isSharer = req.body.isSharer;
   const aboutMe = req.body.aboutMe;
   const ratingId = req.body.ratingId;
 
-  // "new" creates a new instance of an  object
-  // const profilePic = resultImage.secure_url;
-
   try {
+    // Upload the image to Cloudinary
     const resultImage = await cloudinary.uploader.upload(req.file.path);
+    // Get the secure URL of the uploaded image
+    const profilePic = resultImage.secure_url;
+
+    // Create a new user with the profilePic URL
     const newUser = new User({
       name,
       location,
@@ -62,6 +66,8 @@ router.post("/add", multer.single("profilePic"), async (req, res) => {
       aboutMe,
       ratingId,
     });
+
+    // Save the new user to the database
     const result = await newUser.save();
     res.json("User added!");
   } catch (error) {
@@ -93,10 +99,11 @@ router.delete("/:id", async (req, res) => {
 
 router.patch("/update/:id", multer.single("profilePic"), async (req, res) => {
   try {
+    const resultImage = await cloudinary.uploader.upload(req.file.path);
     const user = await User.findById(req.params.id);
     user.name = req.body.name;
     user.location = req.body.location;
-    user.profilePic = req.file.path;
+    user.profilePic = resultImage.secure_url;
     user.email = req.body.email;
     user.isLearner = req.body.isLearner;
     user.isSharer = req.body.isSharer;
