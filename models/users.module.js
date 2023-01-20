@@ -37,11 +37,15 @@ const userSchema = new Schema(
       trim: true,
       maxlength: 1500,
     },
-   ratings: [{ratingId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: false,
-      ref: "Rating",
-    }}]
+    ratings: [
+      {
+        ratingId: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: false,
+          ref: "Rating",
+        },
+      },
+    ],
   },
   {
     timestamps: true,
