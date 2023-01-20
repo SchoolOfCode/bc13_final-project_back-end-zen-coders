@@ -1,7 +1,12 @@
 import express from "express";
 const router = express.Router();
+
 import cloudinary from "../utils/cloudinary.js";
 import multer from "../utils/multer.js";
+
+import { ObjectId } from 'mongoose'; 
+import mongoose from "mongoose";
+
 
 import convert from "heic-convert";
 import sharp from "sharp";
@@ -37,6 +42,32 @@ router.get("/profile", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(400).json("Error: " + error);
+  }
+});
+
+
+
+
+router.get('/profile/:id', async (req, res) => {
+  try {
+    
+    const pipeline = [
+     { $match: { _id: mongoose.Types.ObjectId(req.params.id)} },
+      {
+        $lookup: {
+          from: 'events',
+          localField: '_id',
+          foreignField: 'sharerId',
+          as: 'UsersEvents'
+        }
+      },
+    //  { $sort: { createdAt: -1 } },
+    ];
+    const result = await User.aggregate(pipeline)
+    res.json(result)
+  } catch (error) {
+    console.log(error);
+    res.status(400).json('Error: ' + error);
   }
 });
 
