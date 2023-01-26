@@ -16,7 +16,15 @@ Unit testing is done using
 
 
 
-
+# The following middleware used
+- The following middleware used
+    1. morgan - for debugging and creating log files;
+    2. cors - allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. 
+    3. nodemon - continues server monitoring and automatic restarting when changes are made;
+    4. dotenv - environmental variables;
+    5. mongoose - database connection;
+    6. multer - image uploading in conjuction with cloudinary;
+    7. cloudinary - cloud storage provided;
 
 
 
