@@ -108,11 +108,13 @@ CLOUDINARY_API_SECRET='Enter yours''
 
 | HTTP Method | Path            | Query Params | Request Body (JSON)    | Response Body (JSON)          | Status Code | Result                         |
 | ----------- | --------------- | ------------ | ---------------------- | ----------------------------- | ----------- | ------------------------------ |
-| GET         | /api/quotes     |              |                        | An array of all quote objects | 200         | Gets all quotes                |
-| GET         | /api/quotes     | ?type=random |                        | A random quote object         | 200         | Gets a randomly selected quote |
-| POST        | /api/quotes     |              | {quoteText: (String) } | A newly created quote object  | 201         | Creates a new quote            |
-| PATCH         | /api/quotes/:id |              | {quoteText: (String) } | An edited quote object        | 200         | Updates a quote                |
-| DELETE      | /api/quotes/:id |              |                        | A deleted quote object        | 200         | Deletes a quote                |
+| GET         | /events/        |              |                        | An array of all event objects | 200         | Gets all events                |
+| GET         | /events/:id     |              |                        | An array of an event object   | 200         | Gets an event                  |
+| GET         | /events/explore |              |                        | An array of all event objects linked to the users who created them|200| Gets a selected event linked to the user who created that event |
+| GET         | /events/explore/skill|         |                        | An array of all event objects linked to the users who created them | 200         | Gets a seleted event linked to a user who created it and matched to a skill value from that event |
+| POST        | /events/add     |              | {quoteText: (String) } | A newly created event object  | 201         | Creates a new event            |
+| PATCH       | /events/update/:id |           | {quoteText: (String) } | An edited quote event         | 200         | Updates a event                |
+| DELETE      | /events/:id     |              |                        | A deleted quote event         | 200         | Deletes a event                |
 
 <br>
 
