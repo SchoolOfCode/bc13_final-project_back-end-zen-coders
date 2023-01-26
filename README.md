@@ -91,11 +91,13 @@ CLOUDINARY_API_SECRET='Enter yours''
 
 | HTTP Method | Path            | Query Params | Request Body (JSON)    | Response Body (JSON)          | Status Code | Result                         |
 | ----------- | --------------- | ------------ | ---------------------- | ----------------------------- | ----------- | ------------------------------ |
-| GET         | /api/quotes     |              |                        | An array of all quote objects | 200         | Gets all quotes                |
-| GET         | /api/quotes     | ?type=random |                        | A random quote object         | 200         | Gets a randomly selected quote |
-| POST        | /api/quotes     |              | {quoteText: (String) } | A newly created quote object  | 201         | Creates a new quote            |
-| PATCH         | /api/quotes/:id |              | {quoteText: (String) } | An edited quote object        | 200         | Updates a quote                |
-| DELETE      | /api/quotes/:id |              |                        | A deleted quote object        | 200         | Deletes a quote                |
+| GET         | /users          |              |                        | An array of all users objects | 200         | Gets all users                |
+| GET         | /users/:id      |              |                        | An array with object with a specified user| 200         | Gets a specific user|
+| GET         | /users/profile  |              |                        | An array of all users with the nested array containing their events| 200         | Gets users and their events |
+| GET         | /users/profile/:id|            |                        | An array of a specific user with the nested array containing their events| 200         | Gets a specific user and their events                |
+| POST        | /users/add      |              | {newUser: (Object) } | A newly created user object  | 201         | Creates a new user            |
+| PATCH       | /users/update/:id |            | {newUser: (Object) } | An edited user object        | 200         | Updates a user                |
+| DELETE      | /users/:id      |              |                        | A deleted user object        | 200         | Deletes a user                |
 
 <br>
 
@@ -103,13 +105,6 @@ CLOUDINARY_API_SECRET='Enter yours''
 
 ## 💼 The API will feature the following endpoints for events:
 
-Chris wants to build an inspirational quotes app so his words of wisdom are never lost and easily accessible for future bootcampers.
-
-Today your job is to build the REST API (the backend for the app).
-
-The API will use the `quotes.js` helper functions previously built in the "working-with-files" workshop.
-
-The API will feature the following endpoints:
 
 | HTTP Method | Path            | Query Params | Request Body (JSON)    | Response Body (JSON)          | Status Code | Result                         |
 | ----------- | --------------- | ------------ | ---------------------- | ----------------------------- | ----------- | ------------------------------ |
