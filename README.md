@@ -133,4 +133,10 @@ CLOUDINARY_API_SECRET='Enter yours''
 
 
 
-#The project is deployed on AWS Amplify
+#The project is deployed on Render
+
+# ERD
+
+<img src="https://res.cloudinary.com/drseapwgz/image/upload/v1674731508/Screenshot_2023-01-26_at_11.10.13_cppuml.png"/>
+
+
