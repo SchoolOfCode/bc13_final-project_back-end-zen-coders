@@ -133,7 +133,7 @@ CLOUDINARY_API_SECRET='Enter yours''
 
 
 
-#The project is deployed on Render
+## The project is deployed on Render
 
 # ERD
 
