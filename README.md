@@ -131,11 +131,9 @@ CLOUDINARY_API_SECRET='Enter yours''
 
 | HTTP Method | Path            | Query Params | Request Body (JSON)    | Response Body (JSON)          | Status Code | Result                         |
 | ----------- | --------------- | ------------ | ---------------------- | ----------------------------- | ----------- | ------------------------------ |
-| GET         | /api/quotes     |              |                        | An array of all quote objects | 200         | Gets all quotes                |
-| GET         | /api/quotes     | ?type=random |                        | A random quote object         | 200         | Gets a randomly selected quote |
-| POST        | /api/quotes     |              | {quoteText: (String) } | A newly created quote object  | 201         | Creates a new quote            |
-| PATCH         | /api/quotes/:id |              | {quoteText: (String) } | An edited quote object        | 200         | Updates a quote                |
-| DELETE      | /api/quotes/:id |              |                        | A deleted quote object        | 200         | Deletes a quote                |
+| GET         | /    |              |                        | An array of all rating objects	| 200         | Gets all ratings              |
+| POST        | /add   |              | {rating: (Number), raterId: (String), rateeId: (String)} } | "Rating added!"  | 201         | Creates a new rating            |
+| DELETE      | /:id |              |                        | "rating deleted"       | 200         | Deletes a rating|
 
 <br>
 
