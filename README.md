@@ -85,10 +85,55 @@ CLOUDINARY_API_SECRET='Enter yours''
   </ol>
 </details>
 
+<br>
 
-Attention: the server side has its own repository and you must install the server side first.
+## 💼 The API will feature the following endpoints for profiles:
 
-<a href="https://github.com/SchoolOfCode/bc13_final-project_back-end-zen-coders" >Click to access backend repository </a>
+| HTTP Method | Path            | Query Params | Request Body (JSON)    | Response Body (JSON)          | Status Code | Result                         |
+| ----------- | --------------- | ------------ | ---------------------- | ----------------------------- | ----------- | ------------------------------ |
+| GET         | /api/quotes     |              |                        | An array of all quote objects | 200         | Gets all quotes                |
+| GET         | /api/quotes     | ?type=random |                        | A random quote object         | 200         | Gets a randomly selected quote |
+| POST        | /api/quotes     |              | {quoteText: (String) } | A newly created quote object  | 201         | Creates a new quote            |
+| PATCH         | /api/quotes/:id |              | {quoteText: (String) } | An edited quote object        | 200         | Updates a quote                |
+| DELETE      | /api/quotes/:id |              |                        | A deleted quote object        | 200         | Deletes a quote                |
+
+<br>
+
+<br>
+
+## 💼 The API will feature the following endpoints for events:
+
+Chris wants to build an inspirational quotes app so his words of wisdom are never lost and easily accessible for future bootcampers.
+
+Today your job is to build the REST API (the backend for the app).
+
+The API will use the `quotes.js` helper functions previously built in the "working-with-files" workshop.
+
+The API will feature the following endpoints:
+
+| HTTP Method | Path            | Query Params | Request Body (JSON)    | Response Body (JSON)          | Status Code | Result                         |
+| ----------- | --------------- | ------------ | ---------------------- | ----------------------------- | ----------- | ------------------------------ |
+| GET         | /api/quotes     |              |                        | An array of all quote objects | 200         | Gets all quotes                |
+| GET         | /api/quotes     | ?type=random |                        | A random quote object         | 200         | Gets a randomly selected quote |
+| POST        | /api/quotes     |              | {quoteText: (String) } | A newly created quote object  | 201         | Creates a new quote            |
+| PATCH         | /api/quotes/:id |              | {quoteText: (String) } | An edited quote object        | 200         | Updates a quote                |
+| DELETE      | /api/quotes/:id |              |                        | A deleted quote object        | 200         | Deletes a quote                |
+
+<br>
+
+## 💼 The API will feature the following endpoints for rating:
+
+
+| HTTP Method | Path            | Query Params | Request Body (JSON)    | Response Body (JSON)          | Status Code | Result                         |
+| ----------- | --------------- | ------------ | ---------------------- | ----------------------------- | ----------- | ------------------------------ |
+| GET         | /api/quotes     |              |                        | An array of all quote objects | 200         | Gets all quotes                |
+| GET         | /api/quotes     | ?type=random |                        | A random quote object         | 200         | Gets a randomly selected quote |
+| POST        | /api/quotes     |              | {quoteText: (String) } | A newly created quote object  | 201         | Creates a new quote            |
+| PATCH         | /api/quotes/:id |              | {quoteText: (String) } | An edited quote object        | 200         | Updates a quote                |
+| DELETE      | /api/quotes/:id |              |                        | A deleted quote object        | 200         | Deletes a quote                |
+
+<br>
+
 
 
 #The project is deployed on AWS Amplify
