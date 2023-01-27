@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     // mongoose method to get the list of all users from mdb,
     //find method returns a promise
     const result = await Event.find(); //Same as SELECT * FROM
-    res.json(result);
+    res.json({payload:result});
     //error handeling without restarting server
   } catch (error) {
     console.log(error);
