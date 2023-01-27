@@ -1,9 +1,9 @@
-import express from 'express';
+import express from "express";
 const router = express.Router();
 
-import User from '../models/users.module.js';
+import User from "../models/users.module.js";
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     // mongoose method to get the list of all users from mdb,
     //find method returns a promise
@@ -12,11 +12,11 @@ router.get('/', async (req, res) => {
     //error handeling without restarting server
   } catch (error) {
     console.log(error);
-    res.status(400).json('Error: ' + error);
+    res.status(400).json("Error: " + error);
   }
 });
 
-router.post('/add', async (req, res) => {
+router.post("/add", async (req, res) => {
   const name = req.body.name;
   const location = req.body.location;
   const profilePic = req.body.profilePic;
@@ -40,35 +40,35 @@ router.post('/add', async (req, res) => {
 
   try {
     const result = await newUser.save(); //save method allows the new use to be saved in mdb
-    res.json('User added!');
+    res.json("User added!");
   } catch (error) {
-    console.log(error);
-    res.status(400).json('Error: ' + error);
+    await console.log(error);
+    res.status(400).json("Error: " + error);
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     //findbyid is a mongodb method
     const result = await User.findById(req.params.id);
     res.json(result);
   } catch (error) {
-    console.log('Error: ' + error);
-    res.status(400).json('Error: ' + error);
+    console.log("Error: " + error);
+    res.status(400).json("Error: " + error);
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const result = await User.findByIdAndDelete(req.params.id);
-    res.json('user deleted');
+    res.json("user deleted");
   } catch (error) {
-    console.log('Error: ' + error);
-    res.status(400).json('Error: ' + error);
+    console.log("Error: " + error);
+    res.status(400).json("Error: " + error);
   }
 });
 
-router.patch('/update/:id', async (req, res) => {
+router.patch("/update/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     user.name = req.body.name;
@@ -80,22 +80,22 @@ router.patch('/update/:id', async (req, res) => {
     user.aboutMe = req.body.aboutMe;
     user.ratingId = req.body.ratingId;
     const result = await user.save();
-    res.json('User updated!');
+    res.json("User updated!");
   } catch (error) {
-    console.log('Error: ' + error);
-    res.status(400).json('Error: ' + error);
+    console.log("Error: " + error);
+    res.status(400).json("Error: " + error);
   }
 });
 
-router.patch('/update/rating/:id', async (req, res) => {
+router.patch("/update/rating/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     user.ratings.push(req.body.ratingId);
     const result = await user.save();
-    res.json('User updated!');
+    res.json("User updated!");
   } catch (error) {
-    console.log('Error: ' + error);
-    res.status(400).json('Error: ' + error);
+    console.log("Error: " + error);
+    res.status(400).json("Error: " + error);
   }
 });
 

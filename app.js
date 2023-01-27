@@ -10,7 +10,7 @@ import ratingsRouter from "./routes/rating.js";
 import eventsRouter from "./routes/events.js";
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3004;
 
 app.use(cors());
 app.use(morgan("dev"));
@@ -28,4 +28,3 @@ app.use("/events", eventsRouter);
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
 });
-
